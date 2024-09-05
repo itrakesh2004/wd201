@@ -1,0 +1,25 @@
+{
+  "name": "todo_manager",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
+  },
+  "lint-staged":{
+    ".js":[
+      "eslint",
+      "prettier --write ."
+    ]
+  },
+  "author": "Jane Doe",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "lint-staged": "^15.2.9"
+  },
+  "devDependencies": {
+    "husky": "^8.0.0"
+  }
+}
