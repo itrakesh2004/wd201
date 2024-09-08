@@ -3,11 +3,30 @@ const app = express();
 const { Todo } = require("./models");
 const bodyParser = require("body-parser");
 const { where } = require("sequelize");
+const path=require("path");
 app.use(bodyParser.json());
+ 
+// set EJS as view engine
+app.set("view engine", "ejs");
 
-app.get("/", function (request, response) {
-  response.send("Hello World");
-});
+app.get("/",async(req,res)=>{
+  const allTodos = await Todo.getTodos();
+ 
+  if(req.accepts("html")){
+   res.render("index",{
+    allTodos
+   } );
+  }else {
+    res.json({allTodos})
+  }
+
+})
+
+app.use(express.static(path.join(__dirname, "public")));
+
+// app.get("/", function (request, response) {
+//   response.send("Hello World");
+// });
 
 app.get("/todos", async function (_request, response) {
   console.log("Processing list of all Todos ...");
@@ -64,7 +83,7 @@ app.delete("/todos/:id", async function (request, response) {
 
   // First, we have to query our database to delete a Todo by ID.
   // Then, we have to respond back with true/false based on whether the Todo was deleted or not.
-  response.send(!!isDeleted)
+  response.send(Boolean(isDeleted))
 });
 
 

@@ -72,6 +72,20 @@ describe("Todo Application", function () {
   });
 
   test("Deletes a todo with the given ID if it exists and sends a boolean response", async () => {
-    // FILL IN YOUR CODE HERE
+    let res = await agent.get("/todos");
+
+    let todos = JSON.parse(res.text);
+
+    const id = todos[0]?.id;
+
+    res = await agent.delete(`/todos/${id}`);
+
+    expect(Boolean(res.text)).toBe(true)
+
+     res = await agent.get("/todos");
+
+    res = await agent.delete(`/todos/${id}`);
+
+    expect(res.text).toBe('false')
   });
 });
