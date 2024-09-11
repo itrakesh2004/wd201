@@ -9,19 +9,22 @@ app.use(bodyParser.json());
 // set EJS as view engine
 app.set("view engine", "ejs");
 
+
 app.get("/",async(req,res)=>{
   const allTodos = await Todo.getTodos();
+  const yesterday = await Todo.Overdue();
+  const tomorrow = await Todo.duelater();
+  const today = await Todo.duetoday();
  
   if(req.accepts("html")){
    res.render("index",{
-    allTodos
+    allTodos,yesterday,tomorrow,today,
    } );
   }else {
     res.json({allTodos})
   }
 
 })
-
 app.use(express.static(path.join(__dirname, "public")));
 
 // app.get("/", function (request, response) {
