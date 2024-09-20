@@ -15,9 +15,22 @@ module.exports = (sequelize, DataTypes) => {
       return this.create({ title: title, dueDate: dueDate, completed: false });
     }
 
+    static duelater() {
+      return this.findAll({ });
+    }
+
+    static Overdue() {
+      return this.findAll({ });
+    }
+
+    static duetoday(){
+      return this.findAll({})
+    }
+
     static getTodos() {
       return this.findAll(); 
     }
+
     markAsCompleted() {
       return this.update({ completed: true });
     }
