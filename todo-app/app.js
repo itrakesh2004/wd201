@@ -9,7 +9,6 @@ app.use(bodyParser.json());
 // set EJS as view engine
 app.set("view engine", "ejs");
 
- 
 
 app.get("/",async(req,res)=>{
   const allTodos = await Todo.getTodos();
@@ -26,7 +25,6 @@ app.get("/",async(req,res)=>{
   }
 
 })
-
 app.use(express.static(path.join(__dirname, "public")));
 
 // app.get("/", function (request, response) {
