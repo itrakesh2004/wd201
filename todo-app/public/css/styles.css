@@ -1,6 +1,8 @@
 body {
     font-family: sans-serif;
-    background: white;
-    background-color: aliceblue;
+    background-color: white;
   }
+.Todo-Item:hover .trash-icon{
+  display: block;
+}
 

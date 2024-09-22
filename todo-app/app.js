@@ -2,7 +2,6 @@ const express = require("express");
 const app = express();
 const { Todo } = require("./models");
 const bodyParser = require("body-parser");
-const { where } = require("sequelize");
 const path=require("path");
 app.use(bodyParser.json());
  
